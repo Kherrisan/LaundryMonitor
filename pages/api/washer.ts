@@ -5,7 +5,7 @@ import * as cheerio from 'cheerio';
 export interface WasherStatus {
     id: string,
     name?: string,
-    status?: int,
+    status?: number,
     ddl?: string,
     message: string
 }

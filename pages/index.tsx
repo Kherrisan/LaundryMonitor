@@ -36,7 +36,7 @@ const WasherCard = ({ wid }: {wid: string}) => {
   return (
     <div className={styles.card}>
       <h2 className={inter.className}>{data.name}</h2>
-      <p className={inter.className}>{WASHER_STATUS_TEXT[data.status]}</p>
+      <p className={inter.className}>{WASHER_STATUS_TEXT[data.status!!]}</p>
       <p className={inter.className}>{data.ddl}</p>
       <p className={inter.className}>{data.message}</p>
     </div>
@@ -53,7 +53,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {WASHERS.map((wid) => (<WasherCard wid={wid.toString()} />))}
+        {WASHERS.map((wid) => (<WasherCard wid={wid.toString()} key={wid}/>))}
       </main>
     </>
   )

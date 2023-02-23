@@ -32,8 +32,8 @@ const WasherCard = ({ wid }: { wid: string }) => {
   const { data, error } = useSWR<WasherStatus>(`/api/washer?id=${wid}`, (url: string) => fetch(url).then((r) => r.json()))
   if (error) return <div>failed to load</div>
   return (
-    <div className='bg-light-300 border-b-4 h-44 p-4 bg-gray-300 m-1 rounded transition-all duration-150 hover:shadow-lg hover:opacity-80'>
-      <h2 className='text-2xl font-bold py-2'>{data?.name ?? '获取中'}</h2>
+    <div className='bg-light-300 border-b-4 h-36 p-4 bg-gray-300 m-1 rounded-md transition-all duration-150 hover:shadow-lg hover:opacity-80'>
+      <h2 className='text-2xl font-bold py-2'>{'🧺 '}{data?.name ?? '获取中'}</h2>
       {
         !data ?
           <p className='text-base font-bold text-gray-500'>{'获取中'}</p>
@@ -64,8 +64,14 @@ export default function Home() {
       </Head>
       <main>
         <div className=' '>
-          <h1 className='text-center text-3xl'>橘4B洗衣房裁判席</h1>
-          <div className='grid place-content-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4'>
+          <h1 className='text-center text-3xl pt-8'>橘4B洗衣房裁判席</h1>
+          <p className='text-center'>
+            <a className='text-amber-500 font-semibold underline' href='https://github.com/Kherrisan/laundry-monitor'>
+              laundry-monitor
+            </a>
+            {' @ KendrickZou'}
+          </p>
+          <div className='p-4 grid place-content-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4'>
             {WASHERS.map((wid) => (<WasherCard wid={wid.toString()} key={wid} />))}
           </div>
         </div>

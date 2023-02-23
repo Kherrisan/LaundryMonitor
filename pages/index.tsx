@@ -32,24 +32,25 @@ const WasherCard = ({ wid }: { wid: string }) => {
   const { data, error } = useSWR<WasherStatus>(`/api/washer?id=${wid}`, (url: string) => fetch(url).then((r) => r.json()))
   if (error) return <div>failed to load</div>
   return (
-    <div className='bg-light-300 border-b-4 h-36 p-4 bg-gray-300 m-1 rounded-md transition-all duration-150 hover:shadow-lg hover:opacity-80'>
-      <h2 className='text-2xl font-bold py-2'>{'🧺 '}{data?.name ?? '获取中'}</h2>
-      {
-        !data ?
-          <p className='text-base font-bold text-gray-500'>{'获取中'}</p>
-          : data!.status === 1 ?
-            <p className='text-base font-bold text-amber-500'>{WASHER_STATUS_TEXT[data.status!!]}</p>
-            : <p className='text-base font-bold text-gray-500'>{WASHER_STATUS_TEXT[data.status!!]}</p>
-      }
-      {data?.ddl && (
-        <div className='my-2 text-gray-900/90 primary-text font-mono text-xs'>
-          <span>DDL:{' '}</span>
-          <span className='font-semibold'>{data!.ddl}</span>
-        </div>
-      )
-      }
-
-    </div>
+    <a href={'http://www.manlukj.com/wash/shop/machine_info/machine_id/' + wid + '/type/pay.html'}>
+      <div className='bg-light-300 border-b-4 h-36 p-4 bg-gray-300 m-1 rounded-md transition-all duration-150 hover:shadow-lg hover:opacity-80'>
+        <h2 className='text-2xl font-bold py-2'>{'🧺 '}{data?.name ?? '获取中'}</h2>
+        {
+          !data ?
+            <p className='text-base font-bold text-gray-500'>{'获取中'}</p>
+            : data!.status === 1 ?
+              <p className='text-base font-bold text-amber-500'>{WASHER_STATUS_TEXT[data.status!!]}</p>
+              : <p className='text-base font-bold text-gray-500'>{WASHER_STATUS_TEXT[data.status!!]}</p>
+        }
+        {data?.ddl && (
+          <div className='my-2 text-gray-900/90 primary-text font-mono text-xs'>
+            <span>DDL:{' '}</span>
+            <span className='font-semibold'>{data!.ddl}</span>
+          </div>
+        )
+        }
+      </div>
+    </a>
   )
 }
 
